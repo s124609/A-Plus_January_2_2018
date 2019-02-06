@@ -85,39 +85,59 @@ class aStar {
             }
 
             Cell t;
-            //left 2
-            if(current.i-2>=0){
-                t = grid[current.i-2][current.j];
-                checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+            boolean invalid = false;
+            Cell parent = current.parent;
+
+            while(parent != null) {
+                if (current.i+1 == current.parent.i)
+                    invalid = true;
+                if (current.j+1 == current.parent.j)
+                    invalid = true;
+                if (parent.parent == null)
+                    parent = null;
+                else
+                    parent = parent.parent;
             }
 
-            //down 2
-            if(current.j-2>=0){
-                t = grid[current.i][current.j-2];
-                checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+
+            if(invalid){
+                System.out.print("INVALID");
             }
-
-            //up 1
-            if(current.j+1<grid[0].length){
-                t = grid[current.i][current.j+1];
-                checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
-
-                //up 2
-                if(current.j+2<grid[0].length){
-                    t = grid[current.i][current.j+2];
+            else {
+                //left 2
+                if(current.i-2>=0){
+                    t = grid[current.i-2][current.j];
                     checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
                 }
-            }
 
-            //right 1
-            if(current.i+1<grid.length){
-                t = grid[current.i+1][current.j];
-                checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
-
-                //right 2
-                if(current.i+2<grid.length){
-                    t = grid[current.i+2][current.j];
+                //down 2
+                if(current.j+2<grid[0].length){
+                    t = grid[current.i][current.j-2];
                     checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+                }
+
+                //up 1
+                if(current.j-1<grid.length){
+                    t = grid[current.i][current.j-1];
+                    checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+
+                    //up 2
+                    if(current.j-2>=0){
+                        t = grid[current.i][current.j-2];
+                        checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+                    }
+                }
+
+                //right 1
+                if(current.i+1>=0){
+                    t = grid[current.i+1][current.j];
+                    checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+
+                    //right 2
+                    if(current.i+2>=0){
+                        t = grid[current.i+2][current.j];
+                        checkAndUpdateCost(current, t, current.finalCost+V_H_COST);
+                    }
                 }
             }
         }
