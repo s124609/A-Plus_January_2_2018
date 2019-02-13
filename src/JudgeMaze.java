@@ -34,11 +34,11 @@ public class JudgeMaze {
             }
             permu(locs[0], locs[1],0);                      // runs permu() with the start position and sets current path length to 0
 
-            //System.out.println((shadow[locs[2]][locs[3]] != (1 << 16)) ? shadow[locs[2]][locs[3]] : "NOT POSSIBLE");            // if shadow[endR][endC] != 65536 it will display the path length
+            System.out.println((shadow[locs[2]][locs[3]] != (1 << 16)) ? shadow[locs[2]][locs[3]] : "NOT POSSIBLE");            // if shadow[endR][endC] != 65536 it will display the path length
                                                                                                                                 // else it will display "NOT POSSIBLE"
                                                                                                                                 // booleanCondition ? valueIfTrue : valueIfFalse
 
-            System.out.println("Maze number: " + num);
+            /*System.out.println("Maze number: " + num);
 
             for(int i=0;i<r;++i){
                 for(int j=0;j<r;++j){
@@ -62,7 +62,7 @@ public class JudgeMaze {
                 }
                 System.out.println();
             }
-            else System.out.println("NOT POSSIBLE\n");
+            else System.out.println("NOT POSSIBLE\n");*/
         }
     }
 
@@ -74,7 +74,7 @@ public class JudgeMaze {
             permu(r,c+2,length+1);      // Right 2
             permu(r,c-2,length+1);      // Left 2
             permu(r,c+1,length+1);      // Right 1
-            permu(r-1,c,length+1);      // Down 1
+            permu(r-1,c,length+1);      // Up 1
         }
     }
 
